@@ -7,17 +7,21 @@ import NavBar from "@/components/navbar/navBar";
 
 export default async function LoginPage() {
 	return (
-		<div className="grid gap-10">
+		<div className="grid gap-10 bg-black">
 			<div>
 				<NavBar/>
 			</div>
+			
+		<ListeProduits/> 
+		<hr />
 			<div className="mt-[60px]">
 				<Home/>
 			</div>
 			<div>
 				<Footer/>	
 			</div>
-			<ListeProduits/> 
+		
+
 			{/* <AuthForm/>  */}
 			{/* <AddProductPage/> */}
 		</div>
