@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface PanierRepository extends JpaRepository<Panier, Long> {
     List<Panier> findByAchatIsNull();
+
+    List<Panier> findByClientIdAndAchatIsNull(Long clientId);
 }

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -46,6 +47,26 @@ public class ProductController {
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
         Product updatedProduct = productService.updateProduct(id, product);
         return ResponseEntity.ok(updatedProduct);
+    }
+
+    @GetMapping("/recent")
+    public List<Product> getRecentProducts() {
+        return productService.getRecentProducts();
+    }
+
+    @GetMapping("/top-selling")
+    public List<Product> getTopSellingProducts() {
+        return productService.getTopSellingProducts();
+    }
+    @GetMapping("/categories/{category}")
+    public List<Product> getProductsByCategory(@PathVariable String category) {
+        return productService.getProductsByCategory(category);
+    }
+
+
+    @GetMapping("/statistiques/toutes")
+    public ResponseEntity<List<Map<String,Object>>> getStatsToutesCategories() {
+        return ResponseEntity.ok(productService.getStatsToutesCategories());
     }
 
 }
