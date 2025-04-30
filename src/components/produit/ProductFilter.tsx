@@ -55,10 +55,11 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
             value={searchTerm}
             onChange={handleSearchChange}
             placeholder="Rechercher un produit..."
-            className="bg-gray-800 text-white px-4 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 w-full"
+            className="bg-gray-800 text-white px-4 py-1 pl-10 rounded-lg border focus:outline-none focus:ring-2 focus:ring-green-800 w-[300px]"
           />
-          <Search className="absolute right-3 top-2 text-white" size={16} />
+          <Search className="absolute left-3 -translate-y-1/2 top-1/2 text-white border-r-2" size={16} />
         </div>
+	
 
         {/* Catégorie - Liste déroulante */}
         <div className="relative flex-shrink-0 ml-4">

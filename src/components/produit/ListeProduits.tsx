@@ -50,15 +50,13 @@
 	const baseUrl = "/images/";
 
 	return (
-	<div id="products" className="container mx-auto p-6">
-	<h2 className="text-3xl font-bold mb-6 text-center text-white">Liste des produits</h2>
-	
-	<div className="flex justify-end mb-4">
+	<div id="products" className="container mx-auto p-6">	
+	<div className="flex justify-start m-4">
 		<button
 		onClick={() => handleAddClick(setIsAddOpen)}
-		className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition"
+		className="bg-green-800 px-4 py-2 rounded-lg border-none hover:bg-green-700 font-bold transition text-xs text-gray-400"
 		>
-		Ajouter un produit
+		Nouveaux produit
 		</button>
 	</div>
 
@@ -72,31 +70,31 @@
 	setFilteredProduits={setFilteredProduits} // Passez la fonction ici
 	/>
 	
-	<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+	<div className="grid gap-6  lg:grid-cols-4">
 		{filteredProduits.length > 0 ? (
 		filteredProduits.map((produit) => (
 		<div key={produit.id} className="bg-gray-900 shadow-md rounded-lg overflow-hidden">
 		<img
 			src={`${baseUrl}${produit.imageUrl}`} // On combine l'URL avec l'image stockée en base
 			alt={produit.nom}
-			style={{ width: "150px", height: "150px", objectFit: "cover" }}
+			style={{ width: "450px", height: "150px", objectFit: "cover" }}
 		/>
-		<div className="p-4">
-			<h3 className="text-xl font-semibold mb-2 text-white">{produit.nom}</h3>
-			<p className="text-gray-400 mb-4">{produit.description}</p>
-			<p className="text-lg font-bold mb-2 text-blue-400">Prix: {produit.prix} €</p>
-			<p className="text-gray-500">En stock: {produit.quantiteStock}</p>
-			<div className="flex space-x-2 mt-3">
+		<div className="p-4 ">
+			<h3 className="text-xs font-semibold mb-2 text-white">{produit.nom}</h3>
+			<p className="text-xs text-gray-400 mb-4">{produit.description}</p>
+			<p className="text-xs font-bold mb-2 text-blue-400">Prix: {produit.prix} €</p>
+			<p className="text-xs text-gray-500">En stock: {produit.quantiteStock}</p>
+			<div className="text-xs flex space-x-2 mt-3">
 			<button
 			onClick={() => handlePassClick(produit, setSelectedProduct, setIsFormOpen)}
-			className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+			className=" bg-green-800 text-white px-4 py-2 rounded-lg border-none hover:bg-green-700 font-bold transition text-xs"
 			>
 			Pass
 			</button>
 			
 			<button
 			onClick={() => handleEditClick(produit, setEditedProduct, setIsEditOpen)}
-			className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition"
+			className="bg-green-800 text-white px-4 py-2 rounded-lg border-none hover:bg-green-700 font-bold transition text-xs"
 			>
 			Modifier
 			</button>
@@ -109,7 +107,7 @@
 				console.error("ID du produit introuvable !");
 			}
 			}}
-			className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
+			className="bg-red-400 text-white px-4 py-2 rounded-lg border-none hover:bg-green-700 font-bold transition text-xs"
 			>
 			Supprimer
 			</button>
