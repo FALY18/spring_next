@@ -8,6 +8,7 @@
 	import { fetchProduits, filterProduits, deleteProduit } from "./ProductUtilis";
 	import { handlePassClick, handleCloseForm, handleEditClick, handleInputChange, handleAddClick } from "./productActions";
 	import { updateProduct } from "./actions";
+	import ImageWithSkeleton from "../ ImageWithSkeleton";
 
 	export default function ListeProduits() {
 	const [produits, setProduits] = useState<Product[]>([]);
@@ -74,7 +75,7 @@
 		{filteredProduits.length > 0 ? (
 		filteredProduits.map((produit) => (
 		<div key={produit.id} className="bg-gray-900 shadow-md rounded-lg overflow-hidden">
-		<img
+		<ImageWithSkeleton
 			src={`${baseUrl}${produit.imageUrl}`} // On combine l'URL avec l'image stockée en base
 			alt={produit.nom}
 			style={{ width: "450px", height: "150px", objectFit: "cover" }}
