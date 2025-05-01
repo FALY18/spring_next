@@ -55,7 +55,7 @@
 	<div className="flex justify-start m-4">
 		<button
 		onClick={() => handleAddClick(setIsAddOpen)}
-		className="bg-green-800 px-4 py-2 rounded-lg border-none hover:bg-green-700 font-bold transition text-xs text-gray-400"
+		className="absolute bg-green-800 px-4 ml-[390px] mt-[30px] py-2 rounded-lg border-none hover:bg-green-700 font-bold transition text-xs text-gray-400 z-10"
 		>
 		Nouveaux produit
 		</button>

@@ -71,7 +71,7 @@ export default function AjouterProduit({ onClose, setProduits }: Props) {
       
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg w-96">
         <h3 className="text-lg font-semibold mb-4">Ajouter un produit</h3>
         <form onSubmit={handleSubmit}>
