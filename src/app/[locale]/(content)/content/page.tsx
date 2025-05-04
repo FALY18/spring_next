@@ -1,7 +1,8 @@
 import Navbar from "@/components/navbar/navBar"
 import Footer from "@/components/footer/footerpg"
 import ListeProduits from "@/components/produit/ListeProduits"
-export default function ContentPage(){
+import { withAuth } from "@/lib/withAuth"
+function ContentPage(){
 	return(
 		<body>
 			<div className="grid gap-10 bg-black min-h-screen">
@@ -18,3 +19,4 @@ export default function ContentPage(){
 		</body>
 	)
 }
+export default withAuth(ContentPage, ['admin','client']);

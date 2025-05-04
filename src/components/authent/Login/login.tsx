@@ -58,7 +58,7 @@ export default function AuthForm() {
 		if (!isRegistering) {
 			localStorage.setItem('userRole', responseData.role);
 			setUserRole(responseData.role);
-			window.location.href = 'http://localhost:3000/';
+			window.location.href = 'http://localhost:3000/content/content';
 		} else {
 			setIsRegistering(false);
 		}
