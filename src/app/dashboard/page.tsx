@@ -1,9 +1,9 @@
 // app/dashboard/page.tsx
+
 import Home from "@/components/acceuil/homepage";
 import Navbar from "@/components/navbar/navBar";
-import { withAuth } from "@/lib/withAuth";
 
-function DashboardPage() {
+export default function DashboardPage() {
 	return (
 		<div className="grid gap-10 bg-black min-h-screen">
 			<div><Navbar/></div>
@@ -13,5 +13,4 @@ function DashboardPage() {
 		</div>
 	);
 }
-export default withAuth(DashboardPage, ['admin']);
 

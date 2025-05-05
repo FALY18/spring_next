@@ -1,25 +1,24 @@
-// lib/withAuth.tsx
-import { useRouter } from 'next/router';
-import { useEffect, useState, ComponentType, JSX } from 'react';
+'use client'
 
-export function withAuth<T>(WrappedComponent: ComponentType<T>, allowedRoles: string[] = []) {
-  return function ProtectedRoute(props: T) {
+import { useEffect } from "react";
+import { useRouter } from "next/navigation"; // ✅ Changer ici
+import { getToken, getUserRole } from "./auth";
+
+const withAuth = (WrappedComponent: React.ComponentType, allowedRoles: string[]) => {
+  return function ProtectedRoute(props: any) {
     const router = useRouter();
-    const [authorized, setAuthorized] = useState(false);
 
     useEffect(() => {
-      const token = localStorage.getItem('jwt');
-      const role = localStorage.getItem('userRole');
+      const token = getToken();
+      const role = getUserRole();
 
-      if (!token || !role || (allowedRoles.length > 0 && !allowedRoles.includes(role))) {
-        router.replace('/auth'); // redirige vers l'auth si non autorisé
-      } else {
-        setAuthorized(true); // autorisé : affiche la page
+      if (!token || !allowedRoles.includes(role)) {
+        router.replace("/auth"); // ✅ Redirection fonctionne avec App Router
       }
     }, []);
 
-    if (!authorized) return null; // ou un loader
-
-    return <WrappedComponent {...(props as T & JSX.IntrinsicAttributes)} />;
+    return <WrappedComponent {...props} />;
   };
-}
+};
+
+export default withAuth;

@@ -1,5 +1,6 @@
 	"use client";
 
+	import { useRouter } from "next/router";
 	import { useState, useEffect } from "react";
 	import { Product } from "@/types/product";
 	import FormulaireAchat from "../acceuil/formAchat";
@@ -9,8 +10,9 @@
 	import { handlePassClick, handleCloseForm, handleEditClick, handleInputChange, handleAddClick } from "./productActions";
 	import { updateProduct } from "./actions";
 	import ImageWithSkeleton from "../ ImageWithSkeleton";
+	import withAuth from "@/lib/withAuth";
 
-	export default function ListeProduits() {
+	function ListeProduits() {
 	const [produits, setProduits] = useState<Product[]>([]);
 	const [searchTerm, setSearchTerm] = useState("");
 	const [selectedCategory, setSelectedCategory] = useState("");
@@ -180,3 +182,5 @@
 	</div>
 	);
 	}
+
+export default withAuth(ListeProduits, ['admin','client']);
