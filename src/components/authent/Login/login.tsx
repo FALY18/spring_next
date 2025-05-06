@@ -57,25 +57,32 @@ export default function AuthForm() {
 		});
 
 		if (response.ok) {
-			const responseData = await response.json();
+			const responseData = isRegistering? await response.text() : await response.json();
 
-			// Sauvegarder le token et le rôle dans le localStorage
-			const token = responseData.token;
-			localStorage.setItem('token', token);
+			if(isRegistering){
+				setAuthError("Connexion reussi")
+				setIsRegistering(false)
+			} else{
+				// Sauvegarder le token et le rôle dans le localStorage
+				const token = responseData.token;
+				localStorage.setItem('token', token);
 
-			// Décoder le JWT pour extraire le rôle
-			const payload = JSON.parse(atob(token.split('.')[1]));
-			const role = payload.role;
+				// Décoder le JWT pour extraire le rôle
+				const payload = JSON.parse(atob(token.split('.')[1]));
+				const role = payload.role;
 
-			localStorage.setItem('userRole', role);
-			setUserRole(role);
+				localStorage.setItem('userRole', role);
+				setUserRole(role);
 
-			// Rediriger selon le rôle
-			if (role === 'admin') {
-				router.push('/dashboard');
-			} else {
-				router.push('/content/content');
+				// Rediriger selon le rôle
+				if (role === 'admin') {
+					router.push('/dashboard');
+				} else {
+					router.push('/content/content');
+				}
 			}
+
+			
 		} else {
 			const errorData = await response.json();
 			setAuthError(errorData.message || "Une erreur s'est produite");
