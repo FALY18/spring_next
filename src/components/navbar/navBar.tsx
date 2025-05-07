@@ -3,22 +3,38 @@
 	import { useState, useEffect } from "react";
 	import Link from "next/link";
 	import { Search, Settings } from "lucide-react";
+	import { useRouter } from "next/navigation"; // en haut
 
 	export default function Navbar() {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isLoggedIn, setIsLoggedIn] = useState(false); // Simuler l'état de connexion
 
 	useEffect(() => {
-	const handleScroll = () => {
-	setIsScrolled(window.scrollY > 50);
-	};
-	window.addEventListener("scroll", handleScroll);
-	return () => window.removeEventListener("scroll", handleScroll);
+		const handleScroll = () => setIsScrolled(window.scrollY > 50);
+		window.addEventListener("scroll", handleScroll);
+		
+		// Vérifie la présence du token JWT pour déterminer l'état de connexion
+		const token = localStorage.getItem("token");
+		setIsLoggedIn(!!token);
+	
+		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
+	
 
 	const handleAuth = () => {
 	setIsLoggedIn(!isLoggedIn);
 	};
+
+
+	const router = useRouter();
+
+	const handleLogout = () => {
+		localStorage.removeItem("token");
+		localStorage.removeItem("userRole");
+		setIsLoggedIn(false);
+		router.push("/"); // ou vers la page de connexion
+	};
+
 
 	// Fonction pour défiler vers une section
 	const scrollToSection = (id: string) => {
@@ -64,12 +80,27 @@
 		</button>
 
 		{/* Connexion / Déconnexion */}
-		<button
+		<div
 		onClick={handleAuth}
 		className="bg-white text-gray-900 px-4 py-1 rounded-lg hover:bg-gray-200 transition"
 		>
-		{isLoggedIn ? "Logout" : "Sign in"}
-		</button>
+		
+		{isLoggedIn ? (
+			<button
+				onClick={handleLogout}
+				className="bg-white text-gray-900 px-4 py-1 rounded-lg hover:bg-gray-200 transition"
+			>
+			Logout
+			</button>
+				) : (
+				<Link
+					href="/auth" // ou le chemin de ta page de connexion
+					className="bg-white text-gray-900 px-4 py-1 rounded-lg hover:bg-gray-200 transition"
+				>
+					Sign in
+				</Link>
+			)}
+		</div>
 	</div>
 	</nav>
 	);
