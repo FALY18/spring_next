@@ -4,6 +4,7 @@
 	import Link from "next/link";
 	import { Search, Settings } from "lucide-react";
 	import { useRouter } from "next/navigation"; // en haut
+	//import { toast } from "sonner";
 
 	export default function Navbar() {
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -29,9 +30,11 @@
 	const router = useRouter();
 
 	const handleLogout = () => {
+		
 		localStorage.removeItem("token");
 		localStorage.removeItem("userRole");
 		setIsLoggedIn(false);
+		//toast.success("deconnexion du client")
 		router.push("/"); // ou vers la page de connexion
 	};
 

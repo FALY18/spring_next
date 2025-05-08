@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { toast } from 'sonner';
 
 // Schéma de validation pour connexion et inscription
 const authSchema = z.object({
@@ -58,9 +59,10 @@ export default function AuthForm() {
 
 		if (response.ok) {
 			const responseData = isRegistering? await response.text() : await response.json();
-
+			//const errorData = await response.json();
 			if(isRegistering){
-				setAuthError("Connexion reussi")
+				//const msg = errorData.message || "cconnnexion reusidjlfjsl"
+				toast.success("inscription reussie!")
 				setIsRegistering(false)
 			} else{
 				// Sauvegarder le token et le rôle dans le localStorage
@@ -76,8 +78,10 @@ export default function AuthForm() {
 
 				// Rediriger selon le rôle
 				if (role === 'admin') {
+					toast.success("bienvenu!connexion reussi....")
 					router.push('/dashboard');
 				} else {
+					toast.success("connexion du client reussi...")
 					router.push('/content/content');
 				}
 			}
@@ -85,7 +89,9 @@ export default function AuthForm() {
 			
 		} else {
 			const errorData = await response.json();
-			setAuthError(errorData.message || "Une erreur s'est produite");
+			const message = errorData.message || 'Une erreur est survenue lors de connexion';
+			console.log("------------****",message)
+			toast.error(message)
 		}
 	};
 
