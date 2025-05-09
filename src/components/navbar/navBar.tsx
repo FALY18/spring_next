@@ -35,7 +35,7 @@
 		localStorage.removeItem("userRole");
 		setIsLoggedIn(false);
 		//toast.success("deconnexion du client")
-		router.push("/"); // ou vers la page de connexion
+		router.push("/auth"); // ou vers la page de connexion
 	};
 
 

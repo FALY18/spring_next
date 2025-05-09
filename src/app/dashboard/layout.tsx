@@ -10,10 +10,8 @@ export default async function Dashbard({
 	}:{children:React.ReactNode}
 ){
 	return(
-		<html lang="fr">
-			<body>
-				{children}
-			</body>
-		</html>
+		<div>
+			{children}
+		</div>
 	);
 }

@@ -20,4 +20,4 @@ function Home() {
 	);
 }
 
-export default withAuth(Home, ['admin', 'client']);
+export default withAuth(Home, ['admin']);
