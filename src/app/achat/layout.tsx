@@ -7,17 +7,17 @@ import 'aos/dist/aos.css';
 import React from 'react';
 
 interface RootLayoutProps {
-  children: React.ReactNode;
+children: React.ReactNode;
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  useEffect(() => {
-    AOS.init({ duration: 800, once: true });
-  }, []);
+useEffect(() => {
+AOS.init({ duration: 800, once: true });
+}, []);
 
-  return (
-    <div>
-      {children}
-    </div>
-  );
+return (
+<div>
+{children}
+</div>
+);
 }
