@@ -44,36 +44,31 @@ export default function AjouterProduit({ onClose, setProduits }: Props) {
 		}
 	};
 
-	const handleSubmit = async (e: React.FormEvent) => {
-	e.preventDefault();
-			
-	if (!newProduct.nom || !newProduct.prix || !newProduct.imageUrl) {
-		alert("Veuillez remplir tous les champs !");
-		return;
-	}
-			
-	try {
-		// On extrait l'ID pour ne pas l'envoyer au backend.
-		const { id, ...productWithoutId } = newProduct;
-			
-		// Appel à la fonction addProduct qui envoie la requête au backend.
-		const createdProduct = await addProduct(productWithoutId);
-                // const result = await addProduct(product)
-                // if(result.success){
-                //         toast.success(result.message)
-                // }else{
-                //         toast.error(result.message)
-                // }
-		// Mise à jour de l'état avec le produit retourné (incluant l'ID généré par la BDD)
-		setProduits((prev) => [...prev, createdProduct]);
-			
-		// Ferme le formulaire
-		onClose();
-	} catch (error) {
-               // toast.error("erreur lors de l'ajout de produit")
-		alert("Une erreur est survenue lors de l'ajout du produit.");
-	}
-			};
+        const handleSubmit = async (e: React.FormEvent) => {
+                e.preventDefault();
+        
+                if (!newProduct.nom || !newProduct.prix || !newProduct.imageUrl) {
+                toast.error("Veuillez remplir tous les champs !");
+                return;
+                }
+        
+                try {
+                const { id, ...productWithoutId } = newProduct;
+        
+                const result = await addProduct(productWithoutId);
+        
+                if (result.success && result.data) {
+                toast.success(result.message || "Produit ajouté !");
+                setProduits((prev) => [...prev, result.data]);
+                onClose();
+                } else {
+                toast.error(result.message || "Erreur lors de l'ajout du produit");
+                }
+                } catch (error) {
+                toast.error("Une erreur est survenue lors de l'ajout du produit.");
+                console.error(error);
+                }
+        };      
 			
 
 	return (
