@@ -6,6 +6,7 @@ import { Product } from "@/types/product";
 import FormulaireAchat from "../acceuil/formAchat";
 import ProductFilter from "./ProductFilter";
 import AjouterProduit from "./ajoutForm";
+import ProductModal from "./ProductModal";
 import { fetchProduits, filterProduits, deleteProduit } from "./ProductUtilis";
 import { handlePassClick, handleCloseForm, handleEditClick, handleInputChange, handleAddClick } from "./productActions";
 import { updateProduct } from "./actions";
@@ -52,10 +53,21 @@ const handleSaveEdit = async () => {
 	}
 };
 
+const [selectedProductDetail, setSelectedProductDetail] = useState(null);
+
+
 const baseUrl = "/images/";
 
 return (
 	<div id="products" className="container mx-auto p-6">	
+
+{selectedProductDetail && (
+	<ProductModal
+		product={{ ...selectedProductDetail, imageUrl: `${baseUrl}${selectedProductDetail.imageUrl}` }}
+		onClose={() => setSelectedProductDetail(null)}
+	/>
+)}
+
 		<div className="flex justify-start m-4">
 			<button
 			onClick={() => handleAddClick(setIsAddOpen)}
@@ -80,11 +92,14 @@ return (
 			filteredProduits.map((produit) => (
 			<div key={produit.id} className="bg-gray-900 shadow-md rounded-lg overflow-hidden">
 
-				<ImageWithSkeleton
-					src={`${baseUrl}${produit.imageUrl}`} // On combine l'URL avec l'image stockée en base
-					alt={produit.nom}
-					style={{ width: "450px", height: "150px", objectFit: "cover" }}
-				/>
+		<div onClick={() => setSelectedProductDetail(produit)} className="cursor-pointer">
+			<ImageWithSkeleton
+				src={`${baseUrl}${produit.imageUrl}`} 
+				alt={produit.nom}
+				style={{ width: "450px", height: "150px", objectFit: "cover" }}
+			/>
+		</div>
+
 
 				<div className="p-4 ">
 					<h3 className="text-xs font-semibold mb-2 text-white">{produit.nom}</h3>
