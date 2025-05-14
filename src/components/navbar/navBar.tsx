@@ -97,7 +97,7 @@
 			</button>
 				) : (
 				<Link
-					href="/auth" // ou le chemin de ta page de connexion
+					href="/" // ou le chemin de ta page de connexion
 					className="bg-white text-gray-900 px-4 py-1 rounded-lg hover:bg-gray-200 transition"
 				>
 					Sign in

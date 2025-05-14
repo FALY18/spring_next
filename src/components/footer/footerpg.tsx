@@ -27,7 +27,7 @@ export default function Footer() {
       <button
         onClick={() => setIsVisible(true)}
         className="fixed bottom-6 left-1/2 transform -translate-x-1/2 
-                   bg-white/20 text-white px-6 py-3 rounded-full shadow-lg 
+                  bg-gradient-to-br from-indigo-700 via-purple-500 to-pink-500 overflow-hidden text-gray-200 px-6 py-3 rounded-full shadow-lg 
                    backdrop-blur-md hover:scale-110 transition-all duration-300"
       >
         Contact
@@ -74,10 +74,10 @@ export default function Footer() {
           {/* Bouton de fermeture */}
           <button
             onClick={() => setIsVisible(false)}
-            className="bg-red-600 text-white px-4 py-2 rounded-md 
-                       hover:bg-red-700 hover:scale-105 transition-transform duration-300"
+            className="bg-red-300 text-white px-4 py-2 rounded-md 
+                       hover:bg-red-400 hover:scale-105 transition-transform duration-300"
           >
-            Fermer
+            close
           </button>
         </div>
       </footer>

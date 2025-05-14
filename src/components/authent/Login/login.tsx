@@ -97,16 +97,16 @@ export default function AuthForm() {
 
 	return (
 		<motion.div
-			className="flex justify-center items-center min-h-screen bg-gradient-to-r from-purple-500 to-blue-500"
+			className="flex justify-center items-center w-full"
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.8 }}
 		>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg space-y-6"
+				className="w-full max-w-md bg-black bg-opacity-100 p-8 rounded-2xl shadow-lg space-y-6"
 			>
-				<h2 className="text-2xl font-bold text-center text-gray-700">
+				<h2 className="text-2xl font-bold text-center text-blue-700">
 					{isRegistering ? 'Inscription' : 'Connexion'}
 				</h2>
 
@@ -115,11 +115,11 @@ export default function AuthForm() {
 				<div className="flex flex-col space-y-2">
 					{isRegistering && (
 						<div className="flex flex-col space-y-2">
-							<label className="text-gray-600 font-medium">Nom d'utilisateur</label>
+							<label className="text-gray-400 font-medium">Nom d'utilisateur</label>
 							<input
 								type="text"
 								{...register('username')}
-								className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+								className="p-3 border  bg-black text-gray-100 opacity-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
 								placeholder="Entrez votre nom d'utilisateur"
 							/>
 							{errors.username && (
@@ -128,22 +128,22 @@ export default function AuthForm() {
 						</div>
 					)}
 
-					<label className="text-gray-600 font-medium">Email</label>
+					<label className="text-gray-400 font-medium">Email</label>
 					<input
 						type="email"
 						{...register('email')}
-						className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+						className="p-3 border border-gray-300 bg-black text-gray-100 opacity-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
 						placeholder="Entrez votre email"
 					/>
 					{errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
 				</div>
 
 				<div className="flex flex-col space-y-2">
-					<label className="text-gray-600 font-medium">Mot de passe</label>
+					<label className="text-gray-400 font-medium">Mot de passe</label>
 					<input
 						type="password"
 						{...register('password')}
-						className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+						className="p-3 border border-gray-300 rounded-lg  bg-black text-gray-100 opacity-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
 						placeholder="••••••••"
 					/>
 					{errors.password && (
@@ -153,11 +153,11 @@ export default function AuthForm() {
 
 				{isRegistering && (
 					<div className="flex flex-col space-y-2">
-						<label className="text-gray-600 font-medium">Confirmer le mot de passe</label>
+						<label className="text-gray-400 font-medium">Confirmer le mot de passe</label>
 						<input
 							type="password"
 							{...register('confirmPassword')}
-							className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+							className="p-3 border border-gray-300  bg-black text-gray-100 opacity-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
 							placeholder="••••••••"
 						/>
 						{errors.confirmPassword && (
@@ -188,11 +188,11 @@ export default function AuthForm() {
 					</button>
 				</p>
 
-				{userRole && userRole !== 'admin' && (
+				{/* {userRole && userRole !== 'admin' && (
 					<p className="text-center text-red-500 font-medium mt-4">
 						Accès restreint : certaines actions sont réservées aux administrateurs.
 					</p>
-				)}
+				)} */}
 			</form>
 		</motion.div>
 	);
