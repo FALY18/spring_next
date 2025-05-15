@@ -72,9 +72,9 @@ export default function AjouterProduit({ onClose, setProduits }: Props) {
 			
 
 	return (
-		<div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
-			<div className="bg-white p-6 rounded-lg shadow-lg w-96">
-				<h3 className="text-lg font-semibold mb-4">Ajouter un produit</h3>
+		<div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-95 ">
+			<div className=" max-w-md bg-gray bg-opacity-10  p-6 rounded-lg shadow-2xl w-96">
+				<h3 className="text-xl font-thin text-center text-blue-700 mb-7">ajouter un produit</h3>
 				<form onSubmit={handleSubmit}>
 					<input
 						type="text"
@@ -82,14 +82,14 @@ export default function AjouterProduit({ onClose, setProduits }: Props) {
 						value={newProduct.nom}
 						onChange={handleInputChange}
 						placeholder="Nom du produit"
-						className="w-full p-2 border rounded-md mb-2"
+						className="w-full p-2 border border-gray-300 bg-black text-gray-100 opacity-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
 					/>
 					<textarea
 						name="description"
 						value={newProduct.description}
 						onChange={handleInputChange}
 						placeholder="Description du produit"
-						className="w-full p-2 border rounded-md mb-2"
+						className="w-full p-2 border border-gray-300 bg-black text-gray-100 opacity-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
 					/>
 					<input
 						type="number"
@@ -97,7 +97,7 @@ export default function AjouterProduit({ onClose, setProduits }: Props) {
 						value={newProduct.prix}
 						onChange={handleInputChange}
 						placeholder="Prix du produit"
-						className="w-full p-2 border rounded-md mb-2"
+						className="w-full p-2 border border-gray-300 bg-black text-gray-100 opacity-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
 					/>
 					<input
 						type="number"
@@ -105,7 +105,7 @@ export default function AjouterProduit({ onClose, setProduits }: Props) {
 						value={newProduct.quantiteStock}
 						onChange={handleInputChange}
 						placeholder="Quantité en stock"
-						className="w-full p-2 border rounded-md mb-2"
+						className="w-full p-2 border border-gray-300 bg-black text-gray-100 opacity-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
 					/>
 
 					{/* Input pour uploader l'image */}
@@ -113,7 +113,7 @@ export default function AjouterProduit({ onClose, setProduits }: Props) {
 						type="file"
 						accept="image/*"
 						onChange={handleImageChange}
-						className="w-full p-2 border rounded-md mb-2"
+						className="w-full p-2 border border-gray-300 bg-black text-gray-100 opacity-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-8"
 					/>
 
 					{/* Aperçu de l'image sélectionnée */}
@@ -125,7 +125,7 @@ export default function AjouterProduit({ onClose, setProduits }: Props) {
 						/>
 					)}
 
-					<button type="submit" className="w-full bg-green-500 text-white p-2 rounded-md">
+					<button type="submit" className="w-full bg-green-800 text-gray-400 p-2 rounded-md">
 						Ajouter
 					</button>
 				</form>
