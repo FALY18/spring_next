@@ -5,6 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
+import Navbar from "@/components/navbar/navBar"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -28,6 +29,10 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
 
   return (
     <div>
+	<div className="mb-5 mr-[200px]">
+		<Navbar/>
+	</div>
+	<div className="bg-gray-900 text-gray-400 w-[900px] p-4 rounded-lg h-auto">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filtrer les achats..."
@@ -91,6 +96,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
           Suivant
         </Button>
       </div>
+    </div>
     </div>
   )
 }
