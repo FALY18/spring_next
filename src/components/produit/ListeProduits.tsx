@@ -58,6 +58,43 @@ const [selectedProductDetail, setSelectedProductDetail] = useState(null);
 
 const baseUrl = "/images/";
 
+
+
+const [showFilter, setShowFilter] = useState(true)
+const [lastScrollY, setLastScrollY] = useState(0)
+const [scrollTimeout, setScrollTimeout] = useState<NodeJS.Timeout | null>(null)
+
+useEffect(() => {
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY
+
+    // Stop animation spam
+    if (scrollTimeout) clearTimeout(scrollTimeout)
+
+    if (currentScrollY > lastScrollY) {
+      // Descente → montrer le filtre après un petit délai
+      setScrollTimeout(setTimeout(() => {
+        setShowFilter(true)
+      }, 100))
+    } else {
+      // Montée → cacher le filtre après un petit délai
+      setScrollTimeout(setTimeout(() => {
+        setShowFilter(false)
+      }, 100))
+    }
+
+    setLastScrollY(currentScrollY)
+  }
+
+  window.addEventListener("scroll", handleScroll)
+  return () => {
+    window.removeEventListener("scroll", handleScroll)
+    if (scrollTimeout) clearTimeout(scrollTimeout)
+  }
+}, [lastScrollY])
+
+
+
 return (
 	<div id="products" className="container mx-auto p-6">	
 
@@ -76,16 +113,24 @@ return (
 			Nouveaux produit
 			</button>
 		</div>
+		<div
+  className={`
+    transition-all duration-700 ease-in-out transform overflow-hidden mb-10
+    ${showFilter ? "max-h-[300px] opacity-100 translate-y-10" : "max-h-0 opacity-0 -translate-y-4"}
+  `}
+>
+  <ProductFilter
+    searchTerm={searchTerm}
+    setSearchTerm={setSearchTerm}
+    selectedCategory={selectedCategory}
+    setSelectedCategory={setSelectedCategory} 
+    filterOption={filterOption}
+    setFilterOption={setFilterOption}
+    setFilteredProduits={setFilteredProduits}
+  />
+</div>
 
-		<ProductFilter
-		searchTerm={searchTerm}
-		setSearchTerm={setSearchTerm}
-		selectedCategory={selectedCategory}
-		setSelectedCategory={setSelectedCategory}
-		filterOption={filterOption}
-		setFilterOption={setFilterOption}
-		setFilteredProduits={setFilteredProduits} // Passez la fonction ici
-		/>
+
 
 		<div className="grid gap-6  lg:grid-cols-4">
 			{filteredProduits.length > 0 ? (

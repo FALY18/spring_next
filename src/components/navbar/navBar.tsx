@@ -39,7 +39,7 @@ export default function Navbar() {
 	const linkClasses = (href: string) =>
 		`relative transition font-semibold ${
 			pathname === href
-				? "text-yellow-400 underline animate-pulse before:content-['★'] after:content-['★'] mx-1"
+				? "text-blue-400 border border border-b-gray-100 p-1 rounded-full animate-pulse before:content-[''] after:content-[''] mx-1"
 				: "hover:text-green-400"
 		}`;
 

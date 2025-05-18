@@ -9,17 +9,17 @@ async function getAchats(): Promise<any[]> {
       
 	if (!res.ok) {
 	  const errorText = await res.text();
-	  console.error("❌ ++++++++++Erreur HTTP:", res.status, errorText);
+	  console.error("++++++++++Erreur HTTP:", res.status, errorText);
 	  throw new Error("Échec du chargement des achats.");
 	}
       
 	try {
 	  const data = await res.json();
-	  console.log("✅++++++++++++++ Données reçues:", data);
+	  console.log("++++++++++++++ Données reçues:", data);
 	  return data;
 	} catch (err) {
 	  const raw = await res.text();
-	  console.error("❌ ++++++++JSON mal formé. Corps brut reçu:", raw);
+	  console.error(" ++++++++JSON mal formé. Corps brut reçu:", raw);
 	  throw new Error("Réponse JSON invalide.");
 	}
       }

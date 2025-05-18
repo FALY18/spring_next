@@ -1,7 +1,25 @@
 "use client"
 
-import { ColumnDef, flexRender, getCoreRowModel, getFilteredRowModel, useReactTable, getPaginationRowModel } from "@tanstack/react-table"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import '../globals.css';
+
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  useReactTable,
+  getPaginationRowModel,
+} from "@tanstack/react-table"
+
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
@@ -28,75 +46,80 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
   })
 
   return (
-    <div>
-	<div className="mb-5 mr-[200px]">
-		<Navbar/>
-	</div>
-	<div className="bg-gray-900 text-gray-400 w-[900px] p-4 rounded-lg h-auto">
-      <div className="flex items-center py-4">
-        <Input
-          placeholder="Filtrer les achats..."
-          value={filter}
-          onChange={(event) => setFilter(event.target.value)}
-          className="max-w-sm"
-        />
-      </div>
-      <div className="rounded-md border">
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(header.column.columnDef.header, header.getContext())}
-                  </TableHead>
-                ))}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </TableCell>
+    <div className="min-h-screen w-full bg-gray-900 text-gray-200">
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Contenu principal */}
+      <main className="pt-24 px-6 max-w-full">
+        {/* Filtre */}
+        <div className="flex justify-center mb-6">
+          <Input
+            placeholder="Filtrer les achats..."
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            className="w-full max-w-md"
+          />
+        </div>
+
+        {/* Tableau */}
+        <div className="overflow-x-auto mx-auto w-full max-w-7xl bg-gray-800 p-4 rounded-lg shadow-md">
+          <Table>
+            <TableHeader>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
+                    <TableHead key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(header.column.columnDef.header, header.getContext())}
+                    </TableHead>
                   ))}
                 </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={columns.length} className="text-center">
-                  Aucun résultat.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </div>
-      {/* Pagination */}
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          Précédent
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Suivant
-        </Button>
-      </div>
-    </div>
+              ))}
+            </TableHeader>
+            <TableBody>
+              {table.getRowModel().rows?.length ? (
+                table.getRowModel().rows.map((row) => (
+                  <TableRow key={row.id}>
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id}>
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={columns.length} className="text-center">
+                    Aucun résultat.
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
+
+        {/* Pagination */}
+        <div className="flex justify-end mt-4 gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            Précédent
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            Suivant
+          </Button>
+        </div>
+      </main>
     </div>
   )
 }

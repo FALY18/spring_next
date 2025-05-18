@@ -72,7 +72,7 @@ export default function AjouterProduit({ onClose, setProduits }: Props) {
 			
 
 	return (
-		<div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-95 ">
+		<div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-95 z-50">
 			<div className=" max-w-md bg-gray bg-opacity-10  p-6 rounded-lg shadow-2xl w-96">
 				<h3 className="text-xl font-thin text-center text-blue-700 mb-7">ajouter un produit</h3>
 				<form onSubmit={handleSubmit}>
