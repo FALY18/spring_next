@@ -3,7 +3,6 @@ import { getProducts, deleteProduct, updateProduct, addProduct } from "./actions
 import {toast, Toaster} from 'sonner'
 import Router, { useRouter } from "next/router";
 
-// Récupérer les produits
 export const fetchProduits = async () => {
 	try {
 		const produitsData = await getProducts();
@@ -14,7 +13,6 @@ export const fetchProduits = async () => {
 	}
 };
 
-// Filtrer les produits en fonction de la recherche et de la catégorie
 export const filterProduits = (
 	produits: Product[],
 	searchTerm: string,
@@ -31,7 +29,6 @@ export const filterProduits = (
 	return filtered;
 };
 
-// Supprimer un produit et mettre à jour la liste des produits
 export const deleteProduit = async (id: string, setProduits: Function) => {
 	//use router = useRouter()
 	try {
@@ -46,7 +43,6 @@ export const deleteProduit = async (id: string, setProduits: Function) => {
 	}
 };
 
-// Mettre à jour un produit
 export const saveEditedProduit = async (editedProduct: Product, setProduits: Function) => {
 	//await updateProduct(editedProduct);
 	const result = await updateProduct(editedProduct);

@@ -1,4 +1,3 @@
-// app/dashboard/page.tsx
 
 import Home from "@/components/acceuil/homepage";
 import Navbar from "@/components/navbar/navBar";

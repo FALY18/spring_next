@@ -37,8 +37,8 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
 	useEffect(() => {
                 async function fetchData() {
                         const filteredProducts = await fetchFilteredProducts(searchTerm, selectedCategory, filterOption);
-                        console.log('---------------setFilteredProduits---:', setFilteredProduits);  // Vérification de la fonction
-                        setFilteredProduits(filteredProducts);  // Appel de la fonction pour mettre à jour les produits filtrés
+                        console.log('---------------setFilteredProduits---:', setFilteredProduits);  
+                        setFilteredProduits(filteredProducts);  
                 }
                 fetchData();
 	}, [searchTerm, selectedCategory, filterOption, setFilteredProduits]);
@@ -48,7 +48,6 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
 		<div className="mb-6 p-4 bg-gray-800 rounded-lg">
 
 			<div className="flex justify-between items-center">
-				{/* Recherche avec l'icône */}
 				<div className="relative flex-grow">
 					<input
 						type="text"
@@ -61,7 +60,6 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
 				</div>
 	
 
-				{/* Catégorie - Liste déroulante */}
 				<div className="relative flex-shrink-0 ml-4">
 					<select
 						value={selectedCategory}
@@ -76,7 +74,6 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
 					</select>
 				</div>
 
-				{/* Filtres - Liste déroulante */}
 				<div className="relative flex-shrink-0 ml-4">
 					<select
 						value={filterOption}

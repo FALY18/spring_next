@@ -1,25 +1,24 @@
 
 	const API_URL = "http://localhost:8080/api/achat";
 
-	// Fonction pour récupérer l'historique des achats d'un client
 	export const getHistoriqueAchats = async (clientId: string) => {
-	try {
-	const response = await fetch(`${API_URL}/historique/${clientId}`, {
-	method: "GET",
-	headers: {
-		"Content-Type": "application/json",
-	},
-	});
+		try {
+		const response = await fetch(`${API_URL}/historique/${clientId}`, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		});
 
-	if (!response.ok) {
-	throw new Error("Erreur lors de la récupération de l'historique des achats");
-	}
+		if (!response.ok) {
+			throw new Error("Erreur lors de la récupération de l'historique des achats");
+		}
 
-	return await response.json();
-	} catch (error) {
-	console.error(error);
-	throw error;
-	}
+		return await response.json();
+		} catch (error) {
+			console.error(error);
+		throw error;
+		}
 	};
 
 	// Fonction pour ajouter un produit au panier
@@ -68,23 +67,23 @@
 		const data = { clientId, modePaiement };
 	
 		try {
-		const response = await fetch(`${API_URL}/valider`, {
-		method: "POST",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(data),
-		});
-	
-		if (!response.ok) {
-		const error = await response.text();
-		throw new Error(error || "Échec de la validation de l'achat.");
-		}
-	
-		// Une fois l'achat validé, on met à jour le stock
-		await updateStockAfterPurchase(clientId);
-	
-		return await response.json();
+			const response = await fetch(`${API_URL}/valider`, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(data),
+			});
+		
+			if (!response.ok) {
+				const error = await response.text();
+				throw new Error(error || "Échec de la validation de l'achat.");
+			}
+		
+			//  on met à jour le stock
+			await updateStockAfterPurchase(clientId);
+		
+			return await response.json();
 		} catch (error) {
-		throw new Error("------Erreur lors de la validation de l'achat.");
+			throw new Error("------Erreur lors de la validation de l'achat.");
 		}
 	};
 	

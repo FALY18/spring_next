@@ -35,7 +35,6 @@ export default function Navbar() {
 		}
 	};
 
-	// Lien actif avec animation et étoiles
 	const linkClasses = (href: string) =>
 		`relative transition font-semibold ${
 			pathname === href
@@ -49,12 +48,10 @@ export default function Navbar() {
 				isScrolled ? "shadow-md bg-opacity-90" : "bg-opacity-100"
 			} transition-all`}
 		>
-			{/* Logo */}
 			<Link href="/" className="text-green-500 text-2xl font-bold">
 				H-$eraH
 			</Link>
 
-			{/* Menu */}
 			<ul className="hidden md:flex space-x-10 text-white">
 				<li>
 					<a
@@ -95,7 +92,7 @@ export default function Navbar() {
 				</li>
 			</ul>
 
-			{/* Barre de recherche + paramètres + login */}
+			{/* Barre de recherche + paramètres + login ---*/}
 			<div className="flex items-center space-x-4">
 				<div className="relative">
 					<input
@@ -110,7 +107,6 @@ export default function Navbar() {
 					<Settings size={20} />
 				</button>
 
-				{/* Connexion / Déconnexion */}
 				<div className="bg-white text-gray-900 px-4 py-1 rounded-lg hover:bg-gray-200 transition">
 					{isLoggedIn ? (
 						<button onClick={handleLogout}>Logout</button>

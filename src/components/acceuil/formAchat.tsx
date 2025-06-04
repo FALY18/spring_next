@@ -13,7 +13,6 @@ interface FormulaireAchatProps {
 }
 
 export default function FormulaireAchat({ produit, onClose }: FormulaireAchatProps) {
-	// Si le produit n'est pas encore défini, on affiche un loader
 	if (!produit) {
 		return (
 			<div className="rounded-lg shadow-md">
@@ -93,7 +92,7 @@ export default function FormulaireAchat({ produit, onClose }: FormulaireAchatPro
 					</div>
 				</TabsContent>
 
-				{/* Onglet Validation d'achat */}
+				{/* Onglet na Validation d'achat ty*/}
 				<TabsContent value="validation">
 					<div className="bg-black bg-opacity-95  rounded-lg shadow-md">
 						<div className="mb-4">

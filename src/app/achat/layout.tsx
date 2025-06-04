@@ -2,22 +2,22 @@
 
 import '../globals.css';
 import { useEffect } from 'react';
-import AOS from 'aos'; // Import correct avec des guillemets
+import AOS from 'aos';
 import 'aos/dist/aos.css';
 import React from 'react';
 
 interface RootLayoutProps {
-children: React.ReactNode;
+        children: React.ReactNode;
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-useEffect(() => {
-AOS.init({ duration: 800, once: true });
+        useEffect(() => {
+        AOS.init({ duration: 800, once: true });
 }, []);
 
 return (
-<div>
-{children}
-</div>
+        <div>   
+                {children}
+        </div>
 );
 }

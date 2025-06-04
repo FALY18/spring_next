@@ -1,17 +1,17 @@
-	export const dynamic = 'force-dynamic'; // Pour éviter la mise en cache
+	export const dynamic = 'force-dynamic';
 	async function getHistorique() {
 		try {
 		const res = await fetch("http://localhost:8080/api/achat/historique/2", { cache: "no-store" });
 	
-		const text = await res.text(); // Vérification de la réponse brute
-		console.log("📌 Réponse brute du backend :", text);
+		const text = await res.text();
+		console.log(" Réponse brute du backend :", text);
 	
 		if (!res.ok) {
 			console.error(" Erreur HTTP :", res.status, res.statusText);
 		throw new Error("Le serveur a renvoyé une erreur !");
 		}
 	
-		return JSON.parse(text); // 🔄 Parsing sécurisé
+		return JSON.parse(text); 
 		} catch (error) {
 		console.error("Erreur lors de la récupération :", error);
 		return null; 

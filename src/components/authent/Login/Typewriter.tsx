@@ -9,12 +9,12 @@ export default function Typewriter({ words, loop = true, speed = 100, eraseSpeed
 		if (index >= words.length) return;
 
 		if (subIndex === words[index].length + 1 && !deleting) {
-			// Pause après écriture complète
+			// Pause après écriture iz
 			setTimeout(() => setDeleting(true), delay);
 			return;
 		}
 		if (subIndex === 0 && deleting) {
-			// Mot supprimé, passe au suivant
+			// incremente delete tu
 			setDeleting(false);
 			setIndex((prev) => (prev + 1) % words.length);
 			return;
@@ -29,7 +29,7 @@ export default function Typewriter({ words, loop = true, speed = 100, eraseSpeed
 		return () => clearTimeout(timeout);
 	}, [subIndex, deleting, index, words, speed, eraseSpeed, delay]);
 
-	// Curseur clignotant
+	// Cursor e
 	useEffect(() => {
 		const blinkInterval = setInterval(() => {
 			setBlink((prev) => !prev);

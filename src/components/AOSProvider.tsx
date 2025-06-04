@@ -4,28 +4,28 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 export default function AOSProvider() {
-  useEffect(() => {
-    let initialized = false;
+	useEffect(() => {
+		let initialized = false;
 
-    const initAOS = () => {
-      if (!initialized) {
-        AOS.init({
-          duration: 800,
-          once: false, // ❗️Pour que les animations fonctionnent à chaque scroll
-        });
-        initialized = true;
-      }
-    };
+		const initAOS = () => {
+			if (!initialized) {
+	AOS.init({
+		duration: 800,
+		once: false, 
+	});
+	initialized = true;
+			}
+		};
 
-    const onScroll = () => {
-      initAOS();
-      AOS.refresh(); // Rafraîchit les éléments visibles
-    };
+		const onScroll = () => {
+			initAOS();
+			AOS.refresh(); 
+		};
 
-    window.addEventListener("scroll", onScroll);
+		window.addEventListener("scroll", onScroll);
 
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+		return () => window.removeEventListener("scroll", onScroll);
+	}, []);
 
-  return null;
+	return null;
 }

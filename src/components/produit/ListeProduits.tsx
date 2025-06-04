@@ -19,7 +19,7 @@ function ListeProduits() {
 const [produits, setProduits] = useState<Product[]>([]);
 const [searchTerm, setSearchTerm] = useState("");
 const [selectedCategory, setSelectedCategory] = useState("");
-const [filterOption, setFilterOption] = useState(""); // Option de filtre supplémentaire
+const [filterOption, setFilterOption] = useState(""); 
 const [filteredProduits, setFilteredProduits] = useState<Product[]>([]);
 
 const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -32,16 +32,15 @@ useEffect(() => {
 	async function fetchData() {
 	const produitsData = await fetchProduits();
 	setProduits(produitsData);
-		setFilteredProduits(produitsData); // Initialisation avec tous les produits
+		setFilteredProduits(produitsData); 
 	}
 	fetchData();
 }, []);
 
 useEffect(() => {
-// Applique les filtres dès qu'il y a une modification sur l'un d'eux
 	const filtered = filterProduits(produits, searchTerm, selectedCategory, filterOption);
 	setFilteredProduits(filtered);
-}, [searchTerm, selectedCategory, filterOption, produits]); // Les dépendances incluent filterOption maintenant
+}, [searchTerm, selectedCategory, filterOption, produits]); 
 
 const handleSaveEdit = async () => {
 	if (editedProduct) {
@@ -65,33 +64,30 @@ const [lastScrollY, setLastScrollY] = useState(0)
 const [scrollTimeout, setScrollTimeout] = useState<NodeJS.Timeout | null>(null)
 
 useEffect(() => {
-  const handleScroll = () => {
-    const currentScrollY = window.scrollY
+        const handleScroll = () => {
+        const currentScrollY = window.scrollY
 
-    // Stop animation spam
-    if (scrollTimeout) clearTimeout(scrollTimeout)
+        if (scrollTimeout) clearTimeout(scrollTimeout)
 
-    if (currentScrollY > lastScrollY) {
-      // Descente → montrer le filtre après un petit délai
-      setScrollTimeout(setTimeout(() => {
-        setShowFilter(true)
-      }, 100))
-    } else {
-      // Montée → cacher le filtre après un petit délai
-      setScrollTimeout(setTimeout(() => {
-        setShowFilter(false)
-      }, 100))
-    }
+        if (currentScrollY > lastScrollY) {
+                setScrollTimeout(setTimeout(() => {
+                setShowFilter(true)
+        }, 100))
+        } else {
+        setScrollTimeout(setTimeout(() => {
+                setShowFilter(false)
+        }, 100))
+        }
 
-    setLastScrollY(currentScrollY)
-  }
+        setLastScrollY(currentScrollY)
+        }
 
-  window.addEventListener("scroll", handleScroll)
-  return () => {
-    window.removeEventListener("scroll", handleScroll)
-    if (scrollTimeout) clearTimeout(scrollTimeout)
-  }
-}, [lastScrollY])
+        window.addEventListener("scroll", handleScroll)
+        return () => {
+        window.removeEventListener("scroll", handleScroll)
+        if (scrollTimeout) clearTimeout(scrollTimeout)
+        }
+        }, [lastScrollY])
 
 
 
@@ -114,20 +110,20 @@ return (
 			</button>
 		</div>
 		<div
-  className={`
-    transition-all duration-700 ease-in-out transform overflow-hidden mb-10
-    ${showFilter ? "max-h-[300px] opacity-100 translate-y-10" : "max-h-0 opacity-0 -translate-y-4"}
-  `}
->
-  <ProductFilter
-    searchTerm={searchTerm}
-    setSearchTerm={setSearchTerm}
-    selectedCategory={selectedCategory}
-    setSelectedCategory={setSelectedCategory} 
-    filterOption={filterOption}
-    setFilterOption={setFilterOption}
-    setFilteredProduits={setFilteredProduits}
-  />
+	className={`
+	transition-all duration-700 ease-in-out transform overflow-hidden mb-10
+	${showFilter ? "max-h-[300px] opacity-100 translate-y-10" : "max-h-0 opacity-0 -translate-y-4"}
+	`}
+	>
+	<ProductFilter
+	searchTerm={searchTerm}
+	setSearchTerm={setSearchTerm}
+	selectedCategory={selectedCategory}
+	setSelectedCategory={setSelectedCategory} 
+	filterOption={filterOption}
+	setFilterOption={setFilterOption}
+	setFilteredProduits={setFilteredProduits}
+	/>
 </div>
 
 
@@ -167,35 +163,35 @@ return (
 							Modifier
 						</button>
 
-                                <button
-                                onClick={() => {
-                                if (!produit.id) {
-                                console.error("ID du produit introuvable !");
-                                return;
-                                }
+				<button
+				onClick={() => {
+				if (!produit.id) {
+				console.error("ID du produit introuvable !");
+				return;
+				}
 
-                                toast("Confirmation de suppression", {
-                                description: `Voulez-vous vraiment supprimer le produit "${produit.nom}" ?`,
-                                action: {
-                                        label: "Oui, supprimer",
-                                        onClick: () => {
-                                        console.log("Suppression du produit ID:", produit.id);
-                                        deleteProduit(produit.id, setProduits);
-                                        },
-                                },
-                                cancel: {
-                                        label: "Annuler",
-                                        onClick: () => {
-                                        console.log("Suppression annulée");
-                                        },
-                                },
-                                duration: 8000, // optionnel : laisse le toast actif plus longtemps
-                                });
-                                }}
-                                className="bg-red-400 text-white px-4 py-2 rounded-lg border-none hover:bg-green-700 font-bold transition text-xs"
-                                >
-                                Supprimer
-                                </button>
+				toast("Confirmation de suppression", {
+				description: `Voulez-vous vraiment supprimer le produit "${produit.nom}" ?`,
+				action: {
+					label: "Oui, supprimer",
+					onClick: () => {
+					console.log("Suppression du produit ID:", produit.id);
+					deleteProduit(produit.id, setProduits);
+					},
+				},
+				cancel: {
+					label: "Annuler",
+					onClick: () => {
+					console.log("Suppression annulée");
+					},
+				},
+				duration: 8000, 
+				});
+				}}
+				className="bg-red-400 text-white px-4 py-2 rounded-lg border-none hover:bg-green-700 font-bold transition text-xs"
+				>
+				Supprimer
+				</button>
 
 					</div>
 				</div>

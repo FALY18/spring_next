@@ -10,12 +10,12 @@ interface Props {
 
 export default function AjouterProduit({ onClose, setProduits }: Props) {
 	const [newProduct, setNewProduct] = useState<Product>({
-		id: Math.random().toString(36).substr(2, 9), // Génération d'un ID temporaire
+		id: Math.random().toString(36).substr(2, 9), 
 		nom: "",
 		description: "",
 		prix: 0,
 		quantiteStock: 0,
-		imageUrl: "", // Stockera uniquement le NOM du fichier image
+		imageUrl: "", 
 	});
 
 	const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -29,17 +29,14 @@ export default function AjouterProduit({ onClose, setProduits }: Props) {
 		if (e.target.files && e.target.files.length > 0) {
 			const file = e.target.files[0];
 
-			// Vérification du type de fichier
 			if (!file.type.startsWith("image/")) {
 				alert("Veuillez sélectionner une image valide.");
 				return;
 			}
 
-			// Met à jour l'aperçu de l'image
 			const imageURL = URL.createObjectURL(file);
 			setImagePreview(imageURL);
 
-			// Stocke seulement le NOM du fichier
 			setNewProduct((prev) => ({ ...prev, imageUrl: file.name }));
 		}
 	};
@@ -108,7 +105,6 @@ export default function AjouterProduit({ onClose, setProduits }: Props) {
 						className="w-full p-2 border border-gray-300 bg-black text-gray-100 opacity-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
 					/>
 
-					{/* Input pour uploader l'image */}
 					<input
 						type="file"
 						accept="image/*"
@@ -116,7 +112,6 @@ export default function AjouterProduit({ onClose, setProduits }: Props) {
 						className="w-full p-2 border border-gray-300 bg-black text-gray-100 opacity-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-8"
 					/>
 
-					{/* Aperçu de l'image sélectionnée */}
 					{imagePreview && (
 						<img
 							src={imagePreview}

@@ -5,7 +5,6 @@ import { revalidatePath } from 'next/cache';
 
 const API_BASE_URL = 'http://localhost:8080/api/produits';
 
-// ➤ Créer un produit
 export async function addProduct(product: Omit<Product, 'id'>) {
 	console.log('Tentative d\'ajout du produit:', product);
 
@@ -42,7 +41,6 @@ export async function addProduct(product: Omit<Product, 'id'>) {
 	}
 }
 
-// ➤ Récupérer tous les produits
 export async function getProducts(): Promise<Product[]> {
 	try {
 		const response = await fetch(API_BASE_URL, {
@@ -66,7 +64,6 @@ export async function getProducts(): Promise<Product[]> {
 	}
 }
 
-// ➤ Supprimer un produit
 export async function deleteProduct(productId: string) {
 	try {
 		const response = await fetch(`${API_BASE_URL}/${productId}`, {
@@ -95,7 +92,6 @@ export async function deleteProduct(productId: string) {
 	}
 }
 
-// ➤ Mettre à jour un produit
 export async function updateProduct(product: Product) {
 	try {
 		const response = await fetch(`${API_BASE_URL}/${product.id}`, {

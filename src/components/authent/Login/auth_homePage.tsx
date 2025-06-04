@@ -17,7 +17,6 @@ export default function HomePage() {
 	const [current, setCurrent] = useState(0);
 	const [showAuth, setShowAuth] = useState(false);
 
-	// Auto-slide tous les 4 secondes
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setCurrent((prev) => (prev + 1) % images.length);
@@ -27,7 +26,6 @@ export default function HomePage() {
 
 	return (
 		<div className="relative h-screen w-full overflow-hidden bg-black">
-			{/* Carousel d'images en arrière-plan */}
 			<div className="absolute inset-0 z-0">
 				<AnimatePresence>
 					<motion.img
@@ -41,11 +39,9 @@ export default function HomePage() {
 						transition={{ duration: 1.2, ease: 'easeInOut' }}
 					/>
 				</AnimatePresence>
-				{/* Filtre sombre par-dessus */}
 				<div className="absolute inset-0 bg-black bg-opacity-60"></div>
 			</div>
 
-			{/* Contenu principal */}
 			<div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
 				<h1 className="text-5xl md:text-7xl font-extrabold text-white mb-4 drop-shadow-lg">
 					Bienvenue sur <span className="text-yellow-300">H-$eraH</span>
@@ -81,7 +77,6 @@ export default function HomePage() {
 				</div>
 			</div>
 
-			{/* AuthForm en overlay */}
 			{showAuth && (
 				<div className="absolute inset-0 bg-black bg-opacity-80 z-20 flex justify-center items-center">
 					<AuthForm />

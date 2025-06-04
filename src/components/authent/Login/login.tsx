@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 
-// Schéma de validation pour connexion et inscription
+// Schéma de validation ny input
 const authSchema = z.object({
 	username: z.string().min(3, "Nom d'utilisateur trop court").optional(),
 	email: z.string().email("Email invalide"),
@@ -59,9 +59,7 @@ export default function AuthForm() {
 
 		if (response.ok) {
 			const responseData = isRegistering? await response.text() : await response.json();
-			//const errorData = await response.json();
 			if(isRegistering){
-				//const msg = errorData.message || "cconnnexion reusidjlfjsl"
 				toast.success("inscription reussie!")
 				setIsRegistering(false)
 			} else{
@@ -69,14 +67,13 @@ export default function AuthForm() {
 				const token = responseData.token;
 				localStorage.setItem('token', token);
 
-				// Décoder le JWT pour extraire le rôle
+				// Décoder le JWT via srpingy pour extraire le rôle
 				const payload = JSON.parse(atob(token.split('.')[1]));
 				const role = payload.role;
 
 				localStorage.setItem('userRole', role);
 				setUserRole(role);
 
-				// Rediriger selon le rôle
 				if (role === 'admin') {
 					toast.success("bienvenu!connexion reussi....")
 					router.push('/dashboard');
@@ -188,11 +185,6 @@ export default function AuthForm() {
 					</button>
 				</p>
 
-				{/* {userRole && userRole !== 'admin' && (
-					<p className="text-center text-red-500 font-medium mt-4">
-						Accès restreint : certaines actions sont réservées aux administrateurs.
-					</p>
-				)} */}
 			</form>
 		</motion.div>
 	);
