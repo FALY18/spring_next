@@ -38,4 +38,10 @@ public class AchatController {
     public List<Achat> historiqueAchats(@PathVariable Long clientId) {
         return achatService.historiqueAchats(clientId);
     }
+
+    @GetMapping("/historique")
+    public List<Achat> historiqueTousAchats() {
+        return achatService.getTousLesAchats(); // Ajoute cette méthode dans ton service
+    }
+
 }

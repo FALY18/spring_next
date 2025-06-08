@@ -1,19 +1,22 @@
 package com.javaweb.javaweb.model;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Panier {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "client_id") // Ajoute la clé étrangère vers Client
+    @JoinColumn(name = "client_id")
     private Client client;
 
     @ManyToOne
-    @JoinColumn(name = "achat_id") // Ajoute la clé étrangère vers Achat
+    @JoinColumn(name = "achat_id")
+    @JsonBackReference
     private Achat achat;
 
     @Column(nullable = false)
@@ -22,7 +25,6 @@ public class Panier {
     @Column(nullable = false)
     private Integer quantite;
 
-    // Constructeur sans argument
     public Panier() {}
 
     // Getters et Setters

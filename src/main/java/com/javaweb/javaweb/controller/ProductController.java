@@ -69,4 +69,9 @@ public class ProductController {
         return ResponseEntity.ok(productService.getStatsToutesCategories());
     }
 
+    @GetMapping("/statistiques/stock-par-jour")
+    public ResponseEntity<List<Map<String, Object>>> getStockParJour() {
+        return ResponseEntity.ok(productService.getStockParJour());
+    }
+
 }

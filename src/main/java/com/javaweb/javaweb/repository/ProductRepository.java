@@ -27,6 +27,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     """, nativeQuery = true)
     List<Object[]> sumVentesGroupByCategorieRaw();
 
+    @Query("SELECT TO_CHAR(p.createdAt, 'YYYY-MM-DD') AS jour, SUM(p.quantiteStock) AS total " +
+            "FROM Product p " +
+            "GROUP BY TO_CHAR(p.createdAt, 'YYYY-MM-DD') " +
+            "ORDER BY TO_CHAR(p.createdAt, 'YYYY-MM-DD')")
+    List<Object[]> getStockParJour();
 
 }
 

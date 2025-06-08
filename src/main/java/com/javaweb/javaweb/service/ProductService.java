@@ -6,6 +6,10 @@ import java.time.temporal.ChronoUnit;
 import com.javaweb.javaweb.model.Product;
 import com.javaweb.javaweb.repository.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,13 +72,25 @@ public class ProductService {
         List<Object[]> rows = productRepository.sumVentesGroupByCategorieRaw();
         List<Map<String,Object>> stats = new ArrayList<>();
         for (Object[] row : rows) {
-            stats.add(Map.of(
-                    "categorie", row[0].toString(),
-                    "total", ((Number)row[1]).intValue()
-            ));
+            if(row[0] != null){
+                stats.add(Map.of(
+                        "categorie", row[0].toString(),
+                        "total", ((Number)row[1]).intValue()
+                ));
+            }
         }
         return stats;
     }
 
+    public List<Map<String, Object>> getStockParJour() {
+        List<Object[]> rawData = productRepository.getStockParJour();
+
+        return rawData.stream().map(obj -> {
+            Map<String, Object> map = new HashMap<>();
+            map.put("jour", obj[0]); // format : "2025-04-06"
+            map.put("stock", ((Number) obj[1]).intValue());
+            return map;
+        }).collect(Collectors.toList());
+    }
 
 }

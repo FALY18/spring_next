@@ -1,10 +1,13 @@
 package com.javaweb.javaweb.model;
+
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Achat {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,9 +25,9 @@ public class Achat {
     private LocalDateTime dateAchat;
 
     @OneToMany(mappedBy = "achat", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Panier> paniers;
 
-    // Constructeur sans argument
     public Achat() {
         this.dateAchat = LocalDateTime.now();
     }
@@ -48,4 +51,3 @@ public class Achat {
     public List<Panier> getPaniers() { return paniers; }
     public void setPaniers(List<Panier> paniers) { this.paniers = paniers; }
 }
-

@@ -100,4 +100,8 @@ public class AchatService {
     public List<Achat> historiqueAchats(Long clientId) {
         return achatRepository.findByClientId(clientId);
     }
+    public List<Achat> getTousLesAchats() {
+        return achatRepository.findAll();
+    }
+
 }
