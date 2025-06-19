@@ -75,10 +75,10 @@ export default function AuthForm() {
 				setUserRole(role);
 
 				if (role === 'admin') {
-					toast.success("bienvenu!connexion reussi....")
+					toast.success("bravo ,vous êtes connecté en tant qu'administrateur")
 					router.push('/dashboard');
 				} else {
-					toast.success("connexion du client reussi...")
+					toast.success("vous êtes connecté avec succes en tant qu'un clientèle...")
 					router.push('/content/content');
 				}
 			}

@@ -44,7 +44,7 @@ export default function HomePage() {
 
 			<div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
 				<h1 className="text-5xl md:text-7xl font-extrabold text-white mb-4 drop-shadow-lg">
-					Bienvenue sur <span className="text-yellow-300">H-$eraH</span>
+					Bienvenue sur <span className="text-yellow-300">Hi-$era</span>
 				</h1>
 
 				<p className="text-white text-lg md:text-2xl mb-8 max-w-xl">
@@ -59,7 +59,7 @@ export default function HomePage() {
 					/>
 				</p>
 
-				<div className="flex gap-4">
+				<div className="flex gap-5">
 					<motion.button
 						whileHover={{ scale: 1.1 }}
 						className="bg-white text-purple-700 font-bold py-3 px-6 rounded-full shadow-lg hover:bg-gray-100"
