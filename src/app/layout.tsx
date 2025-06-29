@@ -1,9 +1,8 @@
-// app/layout.tsx
 import './globals.css';
 import { Toaster } from 'sonner';
 export const metadata = {
-	title: 'Titre de votre application',
-	description: 'Description de votre application',
+	title: "planteforme de vente",
+	description: "Multiplateforme de vente en ligne",
 };
 
 export default function RootLayout({
